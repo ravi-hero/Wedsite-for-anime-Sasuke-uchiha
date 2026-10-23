@@ -1,0 +1,64 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1">
+<meta name="theme-color" content="#09070d">
+<title>Sasuke Uchiha | Anime Vault</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Cinzel:wght@500;700;900&family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="style.css">
+</head>
+<body>
+<div class="ambient"></div>
+<header class="topbar">
+  <a class="brand" href="#"><span class="brand-sasuke">SASUKE</span><span class="brand-uchiha">UCHIHA</span><small>ANIME VAULT</small></a>
+  <nav><a class="active" href="#home">Home</a><a href="#library">Anime Library</a><a href="#continue">Continue Watching</a><a href="#about">About</a><button class="text-button" id="adminMenuOpen" type="button">Admin</button></nav>
+  <div class="top-actions"><button class="outline" id="userOpen">User login</button><button class="primary" id="adminOpen" aria-label="Admin access">Access</button></div>
+</header>
+
+<main>
+<section class="hero" id="home">
+  <div class="hero-copy">
+    <p class="eyebrow"><span></span> THE SHINOBI VIDEO ARCHIVE</p>
+    <h1><span>YOUR ANIME.</span><br><em>YOUR WORLD.</em></h1>
+    <p class="hero-desc">Enter the vault. Discover your next obsession, continue your journey, and keep your favourite anime in one place.</p>
+    <div class="hero-buttons"><a class="primary big" href="#library">Explore the vault <span>↗</span></a><button class="outline big" id="heroLogin">Unlock access</button></div>
+    <div class="hero-stats"><div><b>01</b><span>One vault</span></div><i></i><div><b>∞</b><span>Anime worlds</span></div><i></i><div><b>24/7</b><span>Your collection</span></div></div>
+  </div>
+  <div class="hero-art">
+    <div class="orb"></div><div class="slash slash1"></div><div class="slash slash2"></div>
+    <div class="character-mark">うちは</div>
+    <div class="hero-sigil">写<br>輪<br>眼</div>
+    <div class="art-caption"><span>UCHIHA ARCHIVE</span><b>SHADOWS • STEEL • VIOLET</b></div>
+  </div>
+  <div class="hero-bottom-line"></div>
+</section>
+
+<section class="access-banner" id="accessBanner"><span class="lock">⌑</span><div><b>Private anime vault</b><p>Create a username and PIN to unlock the library. Admin controls are kept separate.</p></div><button class="text-button" id="bannerLogin">Sign in / Create account ↗</button></section>
+
+<section class="section" id="library">
+  <div class="section-heading"><div><p class="eyebrow">CURATED FOR YOU</p><h2>Explore the <em>library.</em></h2></div><div class="library-tools"><label class="search"><span>⌕</span><input id="search" placeholder="Search anime or episode..." aria-label="Search videos"></label><select id="genreFilter" aria-label="Filter by genre"><option value="">All genres</option><option>Action</option><option>Adventure</option><option>Fantasy</option><option>Drama</option><option>Comedy</option></select></div></div>
+  <div class="chips"><button class="chip selected" data-category="All">All videos</button><button class="chip" data-category="Featured">Featured</button><button class="chip" data-category="Recently Added">Recently added</button><button class="chip" data-category="Movies">Movies</button><button class="chip" data-category="Episodes">Episodes</button></div>
+  <div id="lockedState" class="locked-state"><div class="lock-large">⌑</div><h3>The vault is sealed.</h3><p>Sign in with your username and PIN to view the anime collection.</p><button class="primary" id="unlockLibrary">Unlock the vault</button></div>
+  <div id="videoGrid" class="video-grid hidden"></div>
+  <div id="emptyState" class="empty-state hidden">No videos match your search yet.</div>
+</section>
+
+<section class="continue section hidden" id="continue"><div class="section-heading"><div><p class="eyebrow">PICK UP WHERE YOU LEFT OFF</p><h2>Continue <em>watching.</em></h2></div></div><div id="continueGrid" class="video-grid"></div></section>
+
+<section class="about section" id="about"><div class="about-symbol">うちは</div><div><p class="eyebrow">THE UCHIHA CODE</p><h2>Built for the <em>obsessed.</em></h2><p>A dark, cinematic home for your anime collection. Violet and silver represent Sasuke's cold precision; crimson and iron represent the Uchiha legacy. Your collection stays behind a sign-in gate, and only an approved admin can upload or edit videos.</p></div></section>
+</main>
+<footer><a class="brand mini" href="#"><span class="brand-sasuke">SASUKE</span><span class="brand-uchiha">UCHIHA</span></a><span>© <span id="year"></span> Sasuke Uchiha Anime Vault</span><span class="footer-dot">VIOLET / SILVER / CRIMSON</span></footer>
+
+<div class="modal-backdrop hidden" id="authModal" role="dialog" aria-modal="true" aria-labelledby="authTitle"><div class="modal"><button class="close" data-close="authModal">×</button><p class="eyebrow">MEMBER ACCESS</p><h2 id="authTitle">Enter the <em>vault.</em></h2><div class="tabs"><button class="tab selected" data-tab="login">Sign in</button><button class="tab" data-tab="signup">Create account</button></div><form id="authForm"><label>Username<input id="username" required minlength="3" maxlength="24" autocomplete="username" placeholder="your_shinobi_name"></label><label>PIN / Password<input id="userPin" required minlength="6" type="password" inputmode="numeric" autocomplete="current-password" placeholder="At least 6 characters"></label><p class="form-note">Use a unique password of 6+ characters. A short PIN is not secure enough for account protection.</p><p id="authError" class="error"></p><button class="primary full" type="submit" id="authSubmit">Unlock access</button></form></div></div>
+
+<div class="modal-backdrop hidden" id="adminModal" role="dialog" aria-modal="true" aria-labelledby="adminTitle"><div class="modal"><button class="close" data-close="adminModal">×</button><p class="eyebrow crimson-text">RESTRICTED AREA</p><h2 id="adminTitle">Admin <em>access.</em></h2><p class="form-note">Admin login is separate from member login. Admin account provisioning must be protected by a trusted server.</p><form id="adminForm"><label>Admin username<input id="adminUsername" required autocomplete="username" placeholder="Admin username"></label><label>Admin password<input id="adminPassword" required type="password" autocomplete="current-password" placeholder="Admin password"></label><p id="adminError" class="error"></p><button class="primary full" type="submit">Verify admin</button></form></div></div>
+
+<div class="modal-backdrop hidden" id="adminPanel" role="dialog" aria-modal="true" aria-labelledby="panelTitle"><div class="modal wide"><button class="close" data-close="adminPanel">×</button><p class="eyebrow crimson-text">UCHIHA CONTROL ROOM</p><h2 id="panelTitle">Admin <em>console.</em></h2><p class="form-note">Only accounts approved by a secure admin authorization service should manage the library.</p>
+<form id="uploadForm" class="upload-form"><div class="two-col"><label>Video title<input id="videoTitle" required placeholder="Episode / movie title"></label><label>Anime / series<input id="animeName" required placeholder="Anime name"></label></div><div class="two-col"><label>Genre<select id="videoGenre"><option>Action</option><option>Adventure</option><option>Fantasy</option><option>Drama</option><option>Comedy</option><option>Other</option></select></label><label>Type<select id="videoType"><option>Episodes</option><option>Movies</option></select></label></div><label>Thumbnail image URL (optional)<input id="thumbnailUrl" type="url" placeholder="https://.../thumbnail.jpg"></label><label>Or choose a thumbnail image<input id="thumbnailFile" type="file" accept="image/*"></label><label>Video file<input id="videoFile" type="file" accept="video/mp4,video/webm,video/ogg" required></label><p class="form-note">Large videos need Firebase Storage billing/limits checked. Never put admin passwords or service-account keys in website code.</p><p id="uploadStatus" class="form-note"></p><button class="primary" type="submit">Upload video</button></form>
+<div class="admin-list-head"><h3>Manage videos</h3><button class="outline small" id="adminLogout">Log out</button></div><div id="adminVideoList" class="admin-video-list"></div></div></div>
+
+<div class="player-backdrop hidden" id="playerModal"><div class="player-shell"><button class="close player-close" data-close="playerModal">×</button><video id="player" controls playsinline controlsList="nodownload"></video><div class="player-meta"><div><h3 id="playerTitle"></h3><p id="playerSubtitle"></p></div><a id="downloadVideo" class="primary" href="#" download>Download video ↓</a></div></div></div>
+<div id="toast" class="toast" aria-live="polite"></div>
+<script type="module" src="app.js"></script>
+</body></html>
